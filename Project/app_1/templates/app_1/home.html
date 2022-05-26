@@ -1,0 +1,40 @@
+{% extends "app_1/index.html" %}
+{% load static %}
+{% block title %}Proyecto Final CoderHouse{% endblock %}
+{% block content %}
+
+<h2>Buscador de cursos</h2>
+<hr>
+<form action="/app_coder/search" method="GET">
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+    <input type="text" name="text_search" id="course_name" placeholder="Búsqueda por nombre" class="form-control"> </div>
+        <div class="col-auto"><button type="submit" class="btn btn-primary" >Buscar por Nombre</button> </div>
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+    <input type="number" name="code_search" id="course_code" placeholder="Búsqueda por código" class="form-control"> </div>
+        <div class="col-auto"><button type="submit" class="btn btn-primary" >Buscar por Nombre</button> </div>
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+    <input type="text" name="all_search" id="course_code_or_name" placeholder="Búsqueda general" class="form-control"> </div>
+        <div class="col-auto"><button type="submit" class="btn btn-primary" >Buscar</button> </div>
+    </div>
+
+</form>
+
+<br>
+
+{% if courses %}
+    <ul>
+        {% for course in courses %}
+            <li>
+                Curso: {{course.name}}
+                -- Camada: {{course.code}}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
