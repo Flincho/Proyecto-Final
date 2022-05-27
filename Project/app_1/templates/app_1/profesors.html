@@ -5,14 +5,14 @@
 <h2>Lista de Profesores</h2>
 <a class="card_custom" href="{% url 'ProfesorDjangoForms' %}">Crear nuevo Profesor</a>
 <hr></hr>
-<ul>
+<table>
     {% for profesor in profesors %}
-        <li>
-            Profesor: {{profesor.name}} {{profesor.last_name}}
-            -- e-mail: {{profesor.email}}
-            -- Profesión: {{profesor.profession}}
-        </li>
+        <tr>
+            <td style="padding: 1em">{{profesor.name}} {{profesor.last_name}}</td>
+            <td style="padding: 1em">{{profesor.email}}</td>
+            <td style="padding: 1em">{{profesor.profession}}</td>
+        </tr>
     {% endfor %}
-</ul>
+</table>
 
 {% endblock %}

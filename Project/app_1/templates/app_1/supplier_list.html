@@ -1,0 +1,37 @@
+{% extends "app_1/index.html" %}
+{% load static %}
+{% block title %}Suppliers{% endblock %}
+{% block content %}
+
+<h2>List of Suppliers</h2>
+<a class="card_custom" href="{% url 'app_coder:course-add' %}">Add Supplier</a>
+<hr></hr>
+<ul>
+    <table>
+        <tr>
+        <th style="padding: 5px">Name</th>
+        <th style="padding: 5px">Phone</th>
+        <th style="padding: 5px">Email</th>
+        <th style="padding: 5px">Bank Account</th>
+        <th style="padding: 5px">Working since</th>
+        </tr>
+        {% for supplier in supplier_list %}
+        <tr>
+           <td style="padding: 5px">{{supplier.name}} {{supplier.phone}}</td><td>{{supplier.email}}</td>
+            <td style="padding: 5px">{{supplier.bank_account}}</td><td>{{supplier.working_since}}</td>
+            <td><a href="{% url 'app_1:supplier-detail' supplier.id %}">
+                <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
+            </a></td>
+            <td><a href="{% url 'app_1:supplier-update' supplier.id %}">
+                <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"> </i>
+            </a></td>
+            <td><a href="{% url 'app_1:supplier-delete' supplier.id %}">
+                <i class="fa fa-trash" style="color: rgb(0, 0, 100);"> </i>
+            </a></td>
+        </tr>
+
+    {% endfor %}
+    </table>
+</ul>
+
+{% endblock %}

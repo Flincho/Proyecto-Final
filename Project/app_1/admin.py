@@ -1,11 +1,10 @@
 from django.contrib import admin
 
-from app_1.models import Course, Student, Profesor, Homework
+from app_1.models import *
+admin.site.register(Supplier)
 
-admin.site.register(Course)
+admin.site.register(Product)
 
-admin.site.register(Student)
+admin.site.register(Client)
 
-admin.site.register(Profesor)
-
-admin.site.register(Homework)
+admin.site.register(Sale)
