@@ -1,0 +1,15 @@
+{% extends "app_1/index.html" %}
+{% load static %}
+{% block title %}Client Detail{% endblock %}
+{% block content %}
+
+<h2>Client Detail</h2>
+<hr></hr>
+<p style="color: #125B50; font-size:1.6em"><b>{{client.name}} {{client.last_name}}</b></p>
+<p style="font-size:1.4em"><b>Email:</b> {{client.email}}</p>
+<p style="font-size:1.4em"><b>Phone:</b> {{client.phone}}</p>
+<p style="font-size:1.4em"><b>Rut:</b> {{client.rut}}</p>
+<p style="font-size:1.4em"><b>Address:</b> {{client.address}}</p>
+<p><a class="btn btn-primary" href="{% url 'app_1:client-list' %}">Back to client list</a></p>
+{% endblock %}
+

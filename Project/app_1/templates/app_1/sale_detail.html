@@ -1,0 +1,14 @@
+{% extends "app_1/index.html" %}
+{% load static %}
+{% block title %}Sale Detail{% endblock %}
+{% block content %}
+
+<h2>Sale Detail</h2>
+<hr>
+<p style="color: #125B50; font-size:1.6em"><b>{{sale.product}}</b></p>
+<p style="font-size:1.4em"><b>Quantity:</b> {{sale.quantity}}</p>
+<p style="font-size:1.4em"><b>Price:</b> {{sale.final_price}}</p>
+<p style="font-size:1.4em"><b>Client:</b> {{sale.client}}</p>
+<p><a class="btn btn-primary" href="{% url 'app_1:sale-list' %}">Back to sale list</a></p>
+{% endblock %}
+

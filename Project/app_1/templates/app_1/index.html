@@ -22,11 +22,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light static-top" style="background-color: #125B50;">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'Home' %}">Home</a>
-                <a class="navbar-brand" href="{% url 'Profesors' %}">Profesores</a>
-                <a class="navbar-brand" href="{% url 'Courses' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'Students' %}">Estudiantes</a>
-                <a class="navbar-brand" href="{% url 'Homeworks' %}">Entregables</a>
+                <a class="navbar-brand" href="{% url 'app_1:Home' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'app_1:client-list' %}">Clients</a>
+                <a class="navbar-brand" href="{% url 'app_1:supplier-list' %}">Suppliers</a>
+                <a class="navbar-brand" href="{% url 'app_1:product-list' %}">Products</a>
+                <a class="navbar-brand" href="{% url 'app_1:sale-list' %}">Sales</a>
                 <a class="btn btn-primary" href="/admin">Log in</a>
             </div>
         </nav>
@@ -37,7 +37,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Proyecto Final<br>CoderHouse</h1>
+                            <h1 class="mb-5">Final Project<br>CoderHouse</h1>
                             <div class="text-lg-start text-white">
                                 {% block content %}
 
@@ -54,11 +54,9 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ&t" target="_blank">About</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">CoderHouse</a></li>
+                            <li class="list-inline-item"><a href="https://www.coderhouse.com" target="_blank">CoderHouse</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Alex Ernst 2022. All Rights Reserved.</p>
                     </div>

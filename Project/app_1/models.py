@@ -1,45 +1,57 @@
 from django.db import models
-from datetime import datetime
-from django.core.validators import MinLengthValidator
 
 
 class Supplier(models.Model):
     name = models.CharField(max_length=40)
-    phone = models.IntegerField(max_length=20)
+    phone = models.IntegerField()
     email = models.EmailField()
     bank_account = models.CharField(max_length=40)
-    working_since = datetime.now().strftime("%d/%m/%Y")
+    working_since = models.DateField(default="2000-01-01")
 
 
-class Product(models.Model):
-    name = models.CharField(max_length=40)
-    category = models.CharField()
-    price = models.IntegerField()
-    stock = models.IntegerField()
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
+def supplier_choices():
+    SUPPLIER_CHOICES = list()
+    for sup in Supplier.objects.all():
+        tuple = (sup.name, sup.name)
+        SUPPLIER_CHOICES.append(tuple)
+    return SUPPLIER_CHOICES
 
 
 class Client(models.Model):
     name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     email = models.EmailField()
-    phone = models.IntegerField(max_length=20)
-    rut = models.IntegerField(max_length=12, validators=[MinLengthValidator(12)])
+    phone = models.IntegerField()
+    rut = models.IntegerField()
     address = models.CharField(max_length=40)
 
 
-#PRODUCT_CHOICES = list()
-#for prod in Product.objects.all():
-#    tuple = (prod.name, prod.name)
-#    PRODUCT_CHOICES.append(tuple)
+def client_choices():
+    CLIENT_CHOICES = list()
+    for cli in Client.objects.all():
+        tuple = (f'{cli.name} {cli.last_name}', f'{cli.name} {cli.last_name}')
+        CLIENT_CHOICES.append(tuple)
+    return CLIENT_CHOICES
 
-#CLIENT_CHOICES = list()
-#for cli in Client.objects.all():
-#    tuple = (cli.name, cli.name)
-#    CLIENT_CHOICES.append(tuple)
+
+class Product(models.Model):
+    name = models.CharField(max_length=40)
+    category = models.CharField(max_length=40)
+    price = models.IntegerField()
+    stock = models.IntegerField()
+    supplier = models.CharField(max_length=40, choices=supplier_choices())
+
+
+def product_choices():
+    PRODUCT_CHOICES = list()
+    for prod in Product.objects.all():
+        tuple = (prod.name, prod.name)
+        PRODUCT_CHOICES.append(tuple)
+    return PRODUCT_CHOICES
+
 
 class Sale(models.Model):
-    #product = models.CharField(choices=PRODUCT_CHOICES)
-    number = models.IntegerField()
+    product = models.CharField(max_length=40, choices=product_choices(), default='.')
+    quantity = models.IntegerField()
     #final_price = number * product[1]
-    #client = models.CharField(choices=CLIENT_CHOICES)
+    client = models.CharField(max_length=40, choices=client_choices(), default='.')

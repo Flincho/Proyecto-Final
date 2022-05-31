@@ -1,0 +1,17 @@
+{% extends "app_1/index.html" %}
+{% load static %}
+{% block title %}Confirm Delete{% endblock %}
+{% block content %}
+
+<h2>Delete Product</h2>
+<hr></hr>
+
+<p>Are you sure about deleting the product <b>{{ product.name }}</b>?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-warning" type="submit" value="Delete" style="color:#fff">
+    <a class="btn btn-primary" href="{% url 'app_1:product-list' %}" >Cancel</a>
+</form>
+
+{% endblock %}
