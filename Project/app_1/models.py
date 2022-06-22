@@ -40,6 +40,7 @@ class Product(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     supplier = models.CharField(max_length=40, choices=supplier_choices())
+    #image = models.ImageField(upload_to='avatars', null=True, blank=True)
 
 
 def product_choices():

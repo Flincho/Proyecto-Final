@@ -1,0 +1,20 @@
+{% extends "app_1/index.html" %}
+{% load static %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+
+<h2>Log In</h2>
+<hr></hr>
+
+{% if form.errors %}
+<p style="color: yellow">Combinación de username y password incorrecta, intenta de nuevo.</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a class="btn btn-dark" href="{% url 'accounts:user-register' %}" >Registo</a>
+    <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+</form>
+
+{% endblock %}
