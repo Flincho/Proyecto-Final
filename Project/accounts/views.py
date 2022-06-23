@@ -34,7 +34,7 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("app_1:home")
+                return redirect("home")
 
         return render(
             request=request,
@@ -52,7 +52,7 @@ def login_request(request):
 
 def logout_request(request):
     logout(request)
-    return redirect("accounts:user-login")
+    return redirect("home")
 
 
 @login_required
@@ -63,7 +63,7 @@ def user_update(request):
         if form.is_valid():
             form.save()
 
-            return redirect('app_1:home')
+            return redirect('home')
 
     form = UserEditForm(model_to_dict(user))
     return render(
@@ -89,7 +89,7 @@ def avatar_load(request):
                 avatar.image = image
             avatar.save()
             messages.success(request, "Imagen cargada exitosamente")
-            return redirect('app_1:home')
+            return redirect('home')
 
     form = AvatarForm()
     return render(

@@ -27,7 +27,7 @@ pip install Django
 
 - Crear base de datos con los Modelos (hacer migraciones y migrar)
 ```bash
-python manage.py makemigrations app_1
+python manage.py makemigrations main
 
 python manage.py migrate
 ```

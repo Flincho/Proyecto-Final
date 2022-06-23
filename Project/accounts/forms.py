@@ -7,10 +7,10 @@ from accounts.models import Avatar
 
 class UserRegisterForm(UserCreationForm):
 
-    username = forms.CharField(label='username', min_length=3)
-    email = forms.EmailField(label='Correo electrónico')
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput)
+    username = forms.CharField(label='Username', min_length=3)
+    email = forms.EmailField(label='Email')
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password', widget=forms.PasswordInput)
 
     class Meta:
         model = User

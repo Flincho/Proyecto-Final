@@ -1,0 +1,40 @@
+{% extends "main/index.html" %}
+{% load static %}
+{% block title %}Clients{% endblock %}
+{% block content %}
+
+<h2>List of Clients</h2>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'clients:client-add' %}">Add Client</a>
+{% endif %}
+<hr>
+    <table>
+            <tr style="border-bottom: 1px solid #fff">
+            <th style="padding: 5px">Name</th>
+            <th style="padding: 5px">Email</th>
+            <th style="padding: 5px" >Phone</th>
+            <th style="padding: 5px" ></th>
+            <th style="padding: 5px"></th>
+        </tr>
+        {% for client in client_list %}
+        <tr style="border-bottom: 1px solid #fff">
+           <td style="padding: 5px">{{client.name}} {{client.last_name}} </td><td style="padding: 5px">{{client.email}}</td>
+           <td style="padding: 5px">{{client.phone}}</td>
+           <td><a href="{% url 'clients:client-detail' client.id %}" style="padding: 5px">
+                <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
+           </a></td>
+           {% if user.is_authenticated %}
+           <td><a href="{% url 'clients:client-update' client.id %}" style="padding: 5px">
+               <i class="bi-pencil-square" style="color: #125B50"> </i>
+           </a></td>
+           <td><a href="{% url 'clients:client-delete' client.id %}" style="padding: 5px">
+               <i class="bi-trash-fill" style="color: #125B50"> </i>
+           </a></td>
+           {% endif %}
+        </tr>
+
+    {% endfor %}
+    </table>
+
+{% endblock %}

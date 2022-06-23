@@ -1,0 +1,15 @@
+{% extends "main/index.html" %}
+{% load static %}
+{% block title %}Product Detail{% endblock %}
+{% block content %}
+
+<h2>Product Detail</h2>
+<hr></hr>
+<p style="color: #125B50; font-size:1.6em"><b>{{product.name}}</b></p>
+<p style="font-size:1.4em"><b>Category:</b> {{product.category}}</p>
+<p style="font-size:1.4em"><b>Price:</b> {{product.price}}</p>
+<p style="font-size:1.4em"><b>Stock:</b> {{product.stock}}</p>
+<p style="font-size:1.4em"><b>Supplier:</b> {{product.supplier}}</p>
+<p><a class="btn btn-primary" href="{% url 'products:product-list' %}">Back to product list</a></p>
+{% endblock %}
+

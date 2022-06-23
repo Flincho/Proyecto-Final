@@ -1,0 +1,17 @@
+{% extends "main/index.html" %}
+{% load static %}
+{% block title %}Confirm Delete{% endblock %}
+{% block content %}
+
+<h2>Delete Supplier</h2>
+<hr></hr>
+
+<p>Are you sure about deleting the supplier <b>{{ supplier.name }}</b>?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-warning" type="submit" value="Delete" style="color:#fff">
+    <a class="btn btn-primary" href="{% url 'suppliers:supplier-list' %}" >Cancel</a>
+</form>
+
+{% endblock %}
