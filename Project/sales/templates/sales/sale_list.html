@@ -7,17 +7,23 @@
 {% if user.is_authenticated %}
 <a class="btn btn-primary" href="{% url 'sales:sale-add' %}">Add Sale</a>
 {% endif %}
+<br><br>
+{% if messages %}
+    {% for message in messages %}
+    <h4><p style="color: #125B50" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p></h4>
+    {% endfor %}
+{% endif %}
 <hr>
     <table>
             <tr style="border-bottom: 1px solid #fff">
-            <th style="padding: 5px">Product</th>
-            <th style="padding: 5px">Quantity</th>
-            <th style="padding: 5px" ></th>
+            <th style="padding: 5px; color: #125B50">Product</th>
+            <th style="padding: 5px; color: #125B50">Quantity</th>
+            <th style="padding: 5px; color: #125B50" >Final Price</th>
             <th style="padding: 5px"></th>
         </tr>
         {% for sale in sale_list %}
         <tr syle="border-bottom: 1px solid #fff">
-           <td style="padding: 5px"><b>{{sale.product}}</b></td><td style="padding: 5px">{{sale.quantity}}</td>
+           <td style="padding: 5px"><b>{{sale.product}}</b></td><td style="padding: 5px">{{sale.quantity}}</td><td style="padding: 5px">${{sale.final_price}}</td>
            <td><a href="{% url 'sales:sale-detail' sale.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>

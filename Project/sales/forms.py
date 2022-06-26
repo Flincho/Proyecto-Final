@@ -1,30 +1,18 @@
-#import datetime
-#from django import forms
-#from django.forms import ModelForm
-#from main.models import Profesor
-#
+from django import forms
+import calculation
+from products.models import *
+from clients.models import *
+from sales.models import Sale
 
-#class CourseForm(forms.Form):
-#    name = forms.CharField(max_length=40, min_length=3, label='Nombre')
-#    code = forms.IntegerField(label='Camada')
-#
-#
-#class ProfesorForm(forms.Form):
-#    name = forms.CharField(max_length=40, min_length=3, label='Nombre')
-#    last_name = forms.CharField(max_length=40, label='Apellido')
-#    email = forms.EmailField(label='Correo electrónico')
-#    profession = forms.CharField(max_length=40, label='Profesión')
-#
-## class ProfesorForm(ModelForm):
-##     class Meta:
-##         model = Profesor
-##         fields = '__all__'
-#
-#
-#class HomeworkForm(forms.Form):
-#    name = forms.CharField(max_length=40, min_length=3, label='Nombre de la Entrega')
-#    due_date = forms.DateField(
-#        label='Fecha de Entrega',
-#        widget=forms.TextInput(attrs={'placeholder': 'yyyy-mm-dd'})
-#    )
-#    is_delivered = forms.BooleanField(label='Entregado', required=False)
+
+class SaleForm(forms.Form):
+    client = forms.ChoiceField(choices=client_choices(), label='Client', required=False)
+    product = forms.ChoiceField(choices=product_choices(), label='Product', required=False)
+    unit_price = forms.IntegerField(label='Unit Price', required=False)
+    quantity = forms.IntegerField(label='Quantity', required=False)
+    final_price = forms.IntegerField(
+        label='Final Price',
+        widget=calculation.FormulaInput('quantity*unit_price'),
+        required=False
+    )
+

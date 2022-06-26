@@ -18,15 +18,27 @@ class UserRegisterForm(UserCreationForm):
         help_texts = {k: "" for k in fields}
 
 
-class UserEditForm(UserChangeForm):
-    password = None
+#class UserEditForm(UserChangeForm):
+#    password = None
+#
+#    class Meta:
+#        model = User
+#        fields = ['email']
+#        widgets = {
+#            'email': forms.TextInput(attrs={'readonly': 'readonly'}),
+#        }
+
+class UserEditForm(forms.ModelForm):
+    username = forms.CharField(max_length=100,
+                               required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
-        fields = ['email']
-        widgets = {
-            'email': forms.TextInput(attrs={'readonly': 'readonly'}),
-        }
+        fields = ['username', 'email']
+
 
 
 class AvatarForm(ModelForm):

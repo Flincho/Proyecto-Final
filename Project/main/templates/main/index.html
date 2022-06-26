@@ -22,7 +22,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light static-top" style="background-color: #125B50;">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'home' %}"><img style="height: 2.3em" src="{% static 'main/assets/Flin_isologo_blanco.png' %}" alt="Home"></img></a>
                 <a class="navbar-brand" href="{% url 'clients:client-list' %}">Clients</a>
                 <a class="navbar-brand" href="{% url 'suppliers:supplier-list' %}">Suppliers</a>
                 <a class="navbar-brand" href="{% url 'products:product-list' %}">Products</a>
@@ -34,7 +34,7 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="UserMenuButton">
                     <a class="dropdown-item" href="{% url 'accounts:user-logout' %}">Log out</a>
-
+                    <a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
                   </div>
                 </div>
                 {% else %}

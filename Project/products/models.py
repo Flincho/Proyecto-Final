@@ -1,22 +1,36 @@
+from django.contrib import messages
+
 from django.db import models
-#from main.models import supplier_choices
+from suppliers.models import *
 
-
-#def supplier_choices():
-#    SUPPLIER_CHOICES = list()
-#    for sup in Supplier.objects.all():
-#        tuple = (sup.name, sup.name)
-#        SUPPLIER_CHOICES.append(tuple)
-#    return SUPPLIER_CHOICES
 
 class Product(models.Model):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40, unique=True)
     category = models.CharField(max_length=40)
     price = models.IntegerField()
     stock = models.IntegerField()
-    #choices=supplier_choices()
-    supplier = models.CharField(max_length=40, default='')
+    supplier = models.CharField(max_length=40, choices=supplier_choices(), default='')
     image = models.ImageField(upload_to='prod_img', null=True, blank=True)
+    #description = models.TextField(default='')
+
+
+def product_choices():
+    PRODUCT_CHOICES = [(' ', ' ')]
+    for prod in Product.objects.all():
+        tuple = (prod.name, prod.name)
+        PRODUCT_CHOICES.append(tuple)
+    return PRODUCT_CHOICES
+
+
+def product_sale(product, sale_q):
+    product = Product.objects.get(name=product)
+    stock = product.stock
+    if sale_q <= stock:
+        product.stock = stock-sale_q
+        product.save()
+        return True
+    else:
+        return stock
 
 
 

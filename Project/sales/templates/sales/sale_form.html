@@ -6,13 +6,21 @@
 <h2>Form to create/edit sale</h2>
 <hr></hr>
 
+{% if messages %}
+    {% for message in messages %}
+    <h4><p style="color: #125B50" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p></h4>
+    {% endfor %}
+{% endif %}
+
 <form action="" method="POST">
     {% csrf_token %}
     <p>
     <table>
-        {{ form.as_table }}
+        {{ sale_form.as_table }}
+
     </table>
     </p>
+    {{ sale_form.media }}
     <p>
         <input type="submit" class="btn btn-primary" value="Save sale" />
     </p>

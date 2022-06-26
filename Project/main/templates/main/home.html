@@ -1,35 +1,29 @@
 {% extends "main/index.html" %}
 {% load static %}
-{% block title %}Proyecto Final CoderHouse{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
 
 
-{% if user.is_authenticated %}
-<div class="text-center">
-    <h2>Bienvenido {{ user.username }}</h2>
-    <h3><a style="color: rgb(3, 36, 184)" href="{% url 'accounts:avatar-load' %}">Cambiar Avatar</a></h3>
-    <img height="160px" src="{{url}}" alt="fallo">
-</div>
-{% endif %}
+
 <h2>Search</h2>
 <hr>
 <form action="/search" method="GET">
     <div class="row g-3 align-items-center">
         <div class="col-auto">
     <input type="text" name="client_search" id="client_name" placeholder="Search client" class="form-control"> </div>
-        <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi-arrow-right-circle-fill" style="color: #125B50"> </i></button> </div>
+        <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi bi-search" style="color: #125B50"> </i></button> </div>
     </div><br>
 
     <div class="row g-3 align-items-center">
         <div class="col-auto">
     <input type="text" name="supplier_search" id="supplier_name" placeholder="Search supplier" class="form-control"> </div>
-        <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi-arrow-right-circle-fill" style="color: #125B50"> </i></button> </div>
+        <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi bi-search" style="color: #125B50"> </i></button> </div>
     </div><br>
 
     <div class="row g-3 align-items-center">
         <div class="col-auto">
     <input type="text" name="product_search" id="product_name" placeholder="Search product" class="form-control"> </div>
-        <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi-arrow-right-circle-fill" style="color: #125B50"> </i></button> </div>
+        <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi bi-search" style="color: #125B50"> </i></button> </div>
     </div><br>
 </form>
 

@@ -1,0 +1,26 @@
+{% extends "main/index.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div style="margin-left: 1.5em">
+<h1 >{{ user.username}}</h1>
+    <br>
+<img height="160px" src="{{ url }}" alt="fallo">
+</div>
+<br>
+<div class="container">
+     <div class="row">
+         <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+             <a class="btn btn-primary" href="{% url 'accounts:user-update' %}">Edit User</a>
+             <a class="btn btn-primary" href="{% url 'accounts:avatar-load' %}">Edit Avatar</a>
+         </div>
+     </div>
+</div>
+
+
+
+
+{% endif %}
+{% endblock %}

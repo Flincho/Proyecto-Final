@@ -11,7 +11,7 @@ class Client(models.Model):
 
 
 def client_choices():
-    CLIENT_CHOICES = list()
+    CLIENT_CHOICES = [(' ', ' ')]
     for cli in Client.objects.all():
         tuple = (f'{cli.name} {cli.last_name}', f'{cli.name} {cli.last_name}')
         CLIENT_CHOICES.append(tuple)

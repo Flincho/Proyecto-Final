@@ -1,4 +1,4 @@
-*.env
+main/.env
 venv/*
 *.log
 *.pot

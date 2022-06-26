@@ -63,7 +63,7 @@ def user_update(request):
         if form.is_valid():
             form.save()
 
-            return redirect('home')
+            return redirect('accounts:profile')
 
     form = UserEditForm(model_to_dict(user))
     return render(
@@ -89,11 +89,19 @@ def avatar_load(request):
                 avatar.image = image
             avatar.save()
             messages.success(request, "Imagen cargada exitosamente")
-            return redirect('home')
+            return redirect('accounts:profile')
 
     form = AvatarForm()
     return render(
         request=request,
         context={"form": form},
         template_name="accounts/avatar_form.html",
+    )
+
+
+@login_required
+def profile(request):
+    return render(
+        request=request,
+        template_name="accounts/profile.html",
     )

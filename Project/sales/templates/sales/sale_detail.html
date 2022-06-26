@@ -6,9 +6,11 @@
 <h2>Sale Detail</h2>
 <hr>
 <p style="color: #125B50; font-size:1.6em"><b>{{sale.product}}</b></p>
-<p style="font-size:1.4em"><b>Quantity:</b> {{sale.quantity}}</p>
-<p style="font-size:1.4em"><b>Price:</b> {{sale.final_price}}</p>
 <p style="font-size:1.4em"><b>Client:</b> {{sale.client}}</p>
+<p style="font-size:1.4em"><b>Quantity:</b> {{sale.quantity}}</p>
+<p style="font-size:1.4em"><b>Unit Price:</b> ${{sale.unit_price}}</p>
+<p style="font-size:1.4em"><b>Final Price:</b> ${{sale.final_price}}</p>
+<p style="font-size:1.4em"><b>Date:</b> {{sale.date}}</p>
 <p><a class="btn btn-primary" href="{% url 'sales:sale-list' %}">Back to sale list</a></p>
 {% endblock %}
 

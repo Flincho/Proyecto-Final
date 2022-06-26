@@ -23,13 +23,13 @@ class ProductDetailView(DetailView):
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     success_url = reverse_lazy('products:product-list')
-    fields = ['name', 'category', 'price', 'stock', 'supplier']
+    fields = ['name', 'category', 'price', 'stock', 'supplier', 'image']
 
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     success_url = reverse_lazy('products:product-list')
-    fields = ['name', 'category', 'price', 'stock', 'supplier']
+    fields = ['name', 'category', 'price', 'stock', 'supplier', 'image']
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
