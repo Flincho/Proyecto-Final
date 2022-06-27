@@ -34,6 +34,7 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.success(request, f"Welcome")
                 return redirect("home")
 
         return render(
@@ -101,7 +102,29 @@ def avatar_load(request):
 
 @login_required
 def profile(request):
+    avatar_ctx = get_avatar_url_ctx(request)
+    context_dict = {**avatar_ctx}
     return render(
         request=request,
+        context=context_dict,
         template_name="accounts/profile.html",
     )
+
+
+def home(request):
+    avatar_ctx = get_avatar_url_ctx(request)
+    context_dict = {**avatar_ctx}
+
+    print('context_dict: ', context_dict)
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="main/home.html")
+
+
+def get_avatar_url_ctx(request):
+    avatars = Avatar.objects.filter(user=request.user.id)
+    if avatars.exists():
+        return {"url": avatars[0].image.url}
+    return {}
+

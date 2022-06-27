@@ -10,16 +10,15 @@
 <hr>
     <table>
             <tr style="border-bottom: 1px solid #fff">
-            <th style="padding: 5px">Name</th>
-            <th style="padding: 5px">Category</th>
-            <th style="padding: 5px" >Dist. Price</th>
-            <th style="padding: 5px" ></th>
-            <th style="padding: 5px"></th>
-        </tr>
+            <th style="padding: 5px; color: #125B50">Name</th>
+            <th style="padding: 5px; color: #125B50">Category</th>
+            <th style="padding: 5px; color: #125B50" >Stock</th>
+            </tr>
+
         {% for product in product_list %}
         <tr style="border-bottom: 1px solid #fff">
            <td style="padding: 5px"><b>{{product.name}}</b></td><td style="padding: 5px">{{product.category}}</td>
-           <td style="padding: 5px">{{product.price}}</td>
+           <td style="padding: 5px">{{product.stock}}</td>
            <td><a href="{% url 'products:product-detail' product.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>

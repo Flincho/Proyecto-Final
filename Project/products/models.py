@@ -1,5 +1,3 @@
-from django.contrib import messages
-
 from django.db import models
 from suppliers.models import *
 
@@ -10,8 +8,8 @@ class Product(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     supplier = models.CharField(max_length=40, choices=supplier_choices(), default='')
-    image = models.ImageField(upload_to='prod_img', null=True, blank=True)
-    #description = models.TextField(default='')
+    image = models.ImageField(upload_to='prod_img/', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 
 def product_choices():

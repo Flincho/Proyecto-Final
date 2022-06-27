@@ -5,11 +5,29 @@
 
 <h2>Product Detail</h2>
 <hr></hr>
-<p style="color: #125B50; font-size:1.6em"><b>{{product.name}}</b></p>
-<p style="font-size:1.4em"><b>Category:</b> {{product.category}}</p>
-<p style="font-size:1.4em"><b>Price:</b> {{product.price}}</p>
-<p style="font-size:1.4em"><b>Stock:</b> {{product.stock}}</p>
-<p style="font-size:1.4em"><b>Supplier:</b> {{product.supplier}}</p>
-<p><a class="btn btn-primary" href="{% url 'products:product-list' %}">Back to product list</a></p>
+
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-start">
+
+                <p style="color: #125B50; font-size:1.6em"><b>{{product.name}}</b></p>
+                <p style="font-size:1.4em"><b>Category:</b> {{product.category}}</p>
+                <p style="font-size:1.4em"><b>Dist. Price:</b> ${{product.price}}</p>
+                <p style="font-size:1.4em"><b>Stock:</b> {{product.stock}}</p>
+                <p style="font-size:1.4em"><b>Supplier:</b> {{product.supplier}}</p>
+                {% if product.description != ''  %}
+                <p style="font-size:1.4em"><b>Description:</b> </p>
+                <div style="background: #fff; color: #000; margin: 1em; border-radius: 5px"><p style="padding: 0.7em">{{product.description}}</p></div>
+                {% endif %}
+                </div>
+
+                {% if product.image %}
+                <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                    <img src="{{ product.image.url }}" width=85% style="margin-right:7.5%; border-radius:1em">
+                </div>
+                {% endif %}
+            </div>
+
+
+<p><a class="btn btn-primary" href="javascript:history.back()">Back to product list</a></p>
 {% endblock %}
 

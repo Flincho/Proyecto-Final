@@ -12,12 +12,12 @@ from suppliers.models import *
 
 class SupplierListView(ListView):
     model = Supplier
-    template_name = "supplier/supplier_list.html"
+    template_name = "suppliers/supplier_list.html"
 
 
 class SupplierDetailView(DetailView):
     model = Supplier
-    template_name = "supplier/supplier_detail.html"
+    template_name = "suppliers/supplier_detail.html"
 
 
 class SupplierCreateView(LoginRequiredMixin, CreateView):

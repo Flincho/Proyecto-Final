@@ -22,17 +22,21 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light static-top" style="background-color: #125B50;">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'home' %}"><img style="height: 2.3em" src="{% static 'main/assets/Flin_isologo_blanco.png' %}" alt="Home"></img></a>
+                <a class="navbar-brand" href="{% url 'home' %}"><img style="height: 2.3em" src="{% static 'main/assets/Flin_isologo_blanco.png' %}" alt="Home"></a>
                 <a class="navbar-brand" href="{% url 'clients:client-list' %}">Clients</a>
                 <a class="navbar-brand" href="{% url 'suppliers:supplier-list' %}">Suppliers</a>
                 <a class="navbar-brand" href="{% url 'products:product-list' %}">Products</a>
                 <a class="navbar-brand" href="{% url 'sales:sale-list' %}">Sales</a>
                 {% if user.is_authenticated %}
                 <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="UserMenoButton" data-bs-toggle="dropdown">
-                    {{ user.username }}
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% if url %}
+                      <img src="{{url}}" height=30em style="border-radius:0.3em">
+                      {% else %}
+                      {{ user.username }}
+                      {% endif %}
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="UserMenuButton">
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="{% url 'accounts:user-logout' %}">Log out</a>
                     <a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
                   </div>
@@ -74,8 +78,12 @@
                             <li class="list-inline-item"><a href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ&t" target="_blank">About</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="https://www.coderhouse.com" target="_blank">CoderHouse</a></li>
+                            {% if user.is_superuser %}
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="/admin" target="_blank">Admin Panel</a></li>
+                            {%endif%}
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Alex Ernst 2022. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Alex Ernst 2022. No Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
@@ -86,21 +94,12 @@
                                 <a href="https://twitter.com" target="_blank"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="https://github.com/Flincho/Proyecto-Final-CoderHouse" target="_blank"><i class="bi-github fs-3"></i></a>
+                                <a href="https://github.com/Flincho/Proyecto-Final" target="_blank"><i class="bi-github fs-3"></i></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{% static 'main/js/scripts.js' %}"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

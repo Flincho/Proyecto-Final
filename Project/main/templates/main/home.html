@@ -3,52 +3,57 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-
+{% if messages %}
+    {% for message in messages %}
+    <h4><p style="color: #125B50" {% if message.tags %} class="{{ message.tags }}"{% endif %}>Welcome {{user.username}}</p></h4>
+    {% endfor %}
+{% endif %}
 
 <h2>Search</h2>
 <hr>
+<div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-start" >
 <form action="/search" method="GET">
     <div class="row g-3 align-items-center">
         <div class="col-auto">
-    <input type="text" name="client_search" id="client_name" placeholder="Search client" class="form-control"> </div>
+    <input type="text" name="client_search" id="client_name" placeholder="Search client" class="form-control" {% if client_search %} value="{{ client_search }}" {% endif %}> </div>
         <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi bi-search" style="color: #125B50"> </i></button> </div>
     </div><br>
 
     <div class="row g-3 align-items-center">
         <div class="col-auto">
-    <input type="text" name="supplier_search" id="supplier_name" placeholder="Search supplier" class="form-control"> </div>
+    <input type="text" name="supplier_search" id="supplier_name" placeholder="Search supplier" class="form-control" {% if supplier_search %} value="{{ supplier_search }}" {% endif %}> </div>
         <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi bi-search" style="color: #125B50"> </i></button> </div>
     </div><br>
 
     <div class="row g-3 align-items-center">
         <div class="col-auto">
-    <input type="text" name="product_search" id="product_name" placeholder="Search product" class="form-control"> </div>
+    <input type="text" name="product_search" id="product_name" placeholder="Search product" class="form-control" {% if product_search %} value="{{ product_search }}" {% endif %}> </div>
         <div class="col-auto"><button type="submit" class="btn btn-primary" ><i class="bi bi-search" style="color: #125B50"> </i></button> </div>
     </div><br>
 </form>
-
+</div>
 <br>
-
+<div class="col-lg-6 h-100 text-center text-lg-end">
+    <div style="margin-right:10%">
 {% if clients %}
     <table>
         <tr style="border-bottom: 1px solid #fff">
-            <th style="padding: 5px">Name</th>
-            <th style="padding: 5px">Email</th>
-            <th style="padding: 5px" >Phone</th>
-            <th style="padding: 5px" ></th>
-            <th style="padding: 5px"></th>
+            <th style="padding: 5px; color: #125B50">Name</th>
+            <th style="padding: 5px; color: #125B50">Email</th>
+            <th style="padding: 5px; color: #125B50">Phone</th>
         </tr>
         {% for client in clients %}
         <tr style="border-bottom: 1px solid #fff">
            <td style="padding: 5px">{{client.name}} {{client.last_name}} </td><td style="padding: 5px">{{client.email}}</td>
            <td style="padding: 5px">{{client.phone}}</td>
-           <td><a href="{% url 'app_1:client-detail' client.id %}" style="padding: 5px">
+           <td><a href="{% url 'clients:client-detail' client.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>
-            <td><a href="{% url 'app_1:client-update' client.id %}" style="padding: 5px">
+            <td><a href="{% url 'clients:client-update' client.id %}" style="padding: 5px">
                 <i class="bi-pencil-square" style="color: #125B50"> </i>
             </a></td>
-            <td><a href="{% url 'app_1:client-delete' client.id %}" style="padding: 5px">
+            <td><a href="{% url 'clients:client-delete' client.id %}" style="padding: 5px">
                 <i class="bi-trash-fill" style="color: #125B50"> </i>
             </a></td>
         </tr>
@@ -61,23 +66,21 @@
 {% if products %}
     <table>
             <tr style="border-bottom: 1px solid #fff">
-            <th style="padding: 5px">Name</th>
-            <th style="padding: 5px">Category</th>
-            <th style="padding: 5px" >Price</th>
-            <th style="padding: 5px" ></th>
-            <th style="padding: 5px"></th>
+            <th style="padding: 5px; color: #125B50">Name</th>
+            <th style="padding: 5px; color: #125B50">Category</th>
+            <th style="padding: 5px; color: #125B50" >Price</th>
         </tr>
         {% for product in products %}
         <tr style="border-bottom: 1px solid #fff">
            <td style="padding: 5px"><b>{{product.name}}</b></td><td style="padding: 5px">{{product.category}}</td>
            <td style="padding: 5px">{{product.price}}</td>
-           <td><a href="{% url 'app_1:product-detail' product.id %}" style="padding: 5px">
+           <td><a href="{% url 'products:product-detail' product.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>
-            <td><a href="{% url 'app_1:product-update' product.id %}" style="padding: 5px">
+            <td><a href="{% url 'products:product-update' product.id %}" style="padding: 5px">
                 <i class="bi-pencil-square" style="color: #125B50"> </i>
             </a></td>
-            <td><a href="{% url 'app_1:product-delete' product.id %}" style="padding: 5px">
+            <td><a href="{% url 'products:product-delete' product.id %}" style="padding: 5px">
                 <i class="bi-trash-fill" style="color: #125B50"> </i>
             </a></td>
         </tr>
@@ -89,21 +92,19 @@
 {% if suppliers %}
     <table>
          <tr style="border-bottom: 1px solid #fff">
-            <th style="padding: 5px">Name</th>
-            <th style="padding: 5px">Email</th>
-            <th style="padding: 5px" ></th>
-            <th style="padding: 5px"></th>
+            <th style="padding: 5px; color: #125B50">Name</th>
+            <th style="padding: 5px; color: #125B50">Email</th>
         </tr>
         {% for supplier in suppliers %}
         <tr style="border-bottom: 1px solid #fff">
            <td style="padding: 5px">{{supplier.name}} </td><td style="padding: 5px">{{supplier.email}}</td>
-            <td><a href="{% url 'app_1:supplier-detail' supplier.id %}" style="padding: 5px">
+            <td><a href="{% url 'suppliers:supplier-detail' supplier.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>
-            <td><a href="{% url 'app_1:supplier-update' supplier.id %}" style="padding: 5px">
+            <td><a href="{% url 'suppliers:supplier-update' supplier.id %}" style="padding: 5px">
                 <i class="bi-pencil-square" style="color: #125B50"> </i>
             </a></td>
-            <td><a href="{% url 'app_1:supplier-delete' supplier.id %}" style="padding: 5px">
+            <td><a href="{% url 'suppliers:supplier-delete' supplier.id %}" style="padding: 5px">
                 <i class="bi-trash-fill" style="color: #125B50"> </i>
             </a></td>
         </tr>
@@ -111,5 +112,6 @@
     {% endfor %}
     </table>
 {% endif %}
-
+</div>
+</div>
 {% endblock %}
