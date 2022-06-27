@@ -67,3 +67,14 @@ def search(request):
     )
 
 
+def about(request):
+    avatar_ctx = get_avatar_url_ctx(request)
+    context_dict = {**avatar_ctx}
+
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="main/about.html",
+    )
+
+

@@ -24,15 +24,17 @@ urlpatterns = [
 
                   path('', views.home, name='home'),
                   path('search', views.search, name='search'),
+                  path('about/', views.about, name='about'),
 
                   path('accounts/', include('accounts.urls')),
                   path('products/', include('products.urls')),
                   path('suppliers/', include('suppliers.urls')),
                   path('clients/', include('clients.urls')),
                   path('sales/', include('sales.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Admin Titles
 admin.site.site_header = "Flin Administration Page"
 admin.site.site_title = "Flin"
 admin.site.index_title = "Admin Panel"
+

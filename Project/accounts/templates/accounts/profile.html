@@ -8,6 +8,12 @@
 <div class="container">
     <h1 style="color: #125B50">{{ user.username}}</h1>
 
+{% if messages %}
+    {% for message in messages %}
+    <h4><p style="color: #125B50" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p></h4>
+    {% endfor %}
+{% endif %}
+
     <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
             <img width=90% src="{{ url }}" style="border-radius:4em">

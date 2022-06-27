@@ -129,7 +129,6 @@ def bio_update(request):
     )
 
 
-
 @login_required
 def profile(request):
     avatar_ctx = get_avatar_url_ctx(request)
@@ -145,6 +144,7 @@ def profile(request):
     )
 
 
+@login_required
 def get_avatar_url_ctx(request):
     avatars = Avatar.objects.filter(user=request.user.id)
     if avatars.exists():
@@ -152,6 +152,7 @@ def get_avatar_url_ctx(request):
     return {}
 
 
+@login_required
 def get_biography(request):
     avatars = Avatar.objects.filter(user=request.user.id)
     if avatars.exists():

@@ -1,0 +1,31 @@
+{% extends "main/index.html" %}
+{% load static %}
+{% block title %}About{% endblock %}
+{% block content %}
+
+
+<div class="container">
+<br>
+    <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-start">
+            <img width=95% src="{% static 'main/assets/Alex_Ernst.jpg' %}" style="border-radius:1em">
+        </div>
+
+        <div class="col-lg-6 h-100 text-center text-lg-start">
+
+            <p style="color: #fff; font-size:1.3em">Este sitio web corresponde el proyecto final del <b>curso de Python y Django de CoderHouse</b>,
+                en el que se condensa lo aprendido durante estos tres meses junto al profesor Juan Francisco Pineda Pinzón y por cuenta propia.
+                El concepto es una mezcla entre web tipo blog y gestión empresarial, que aunque le faltan muchas cosas para ser una de las dos,
+                considero que esta combinación me llevó a desarrollar y aprender un abanico más amplio de conocimientos</p>
+
+            <p style="color: #fff; font-size:1.3em"><b>Sobre el autor</b></p>
+            <p style="color: #fff; font-size:1.3em">Soy Alex Ernst, tengo 17 años, y vivo en Uruguay. Comencé a programar este mes de febrero durante las vacaciones de verano,
+                tomando primero el curso Python for Everybody, y luego iniciando este en el mes de marzo. Motivado por mis ganas incansables de aprender, el amor a la tecnología
+                y a saber cómo funcionan las cosas, el querer aprovechar el tiempo libre para desarrollar una habilidad, y pensando también en mi futuro laboral, que aunque quiero
+                estudiar ingeniería mecánica, la programación es un conocimiento esencial, incurrí en esta aventura que me llenó de satisfacción y nuevos conocimientos</p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
