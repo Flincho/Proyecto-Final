@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from accounts.views import get_avatar_url_ctx
 
 from sales.models import *
 from accounts.models import *
@@ -23,13 +24,6 @@ def home(request):
         request=request,
         context=context_dict,
         template_name="main/home.html")
-
-
-def get_avatar_url_ctx(request):
-    avatars = Avatar.objects.filter(user=request.user.id)
-    if avatars.exists():
-        return {"url": avatars[0].image.url}
-    return {}
 
 
 def search(request):
