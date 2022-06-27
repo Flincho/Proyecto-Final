@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 from django.shortcuts import redirect, render
 
-from accounts.forms import UserRegisterForm, UserEditForm, AvatarForm
-from accounts.models import Avatar
+from accounts.forms import *
+from accounts.models import *
 
 
 def register(request):
@@ -89,7 +89,7 @@ def avatar_load(request):
                     os.remove(avatar.image.path)
                 avatar.image = image
             avatar.save()
-            messages.success(request, "Imagen cargada exitosamente")
+            messages.success(request, "Avatar uploaded successfully")
             return redirect('accounts:profile')
 
     form = AvatarForm()
@@ -101,9 +101,43 @@ def avatar_load(request):
 
 
 @login_required
+def bio_update(request):
+
+    if request.method == 'POST':
+        form = BiographyEditForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            biography = data['biography']
+            avatars = Avatar.objects.filter(user=request.user.id)
+
+            if not avatars.exists():
+                avatar = Avatar(user=request.user, biography=biography)
+            else:
+                avatar = avatars[0]
+                avatar.biography = biography
+            avatar.save()
+
+            messages.success(request, "Biography edited")
+            return redirect('accounts:profile')
+
+    form = BiographyEditForm()
+    return render(
+        request=request,
+        context={"form": form},
+        template_name="accounts/bio_form.html",
+    )
+
+
+
+@login_required
 def profile(request):
     avatar_ctx = get_avatar_url_ctx(request)
     context_dict = {**avatar_ctx}
+    biography = get_biography(request)
+    context_dict.update({
+        'bio': biography
+    })
     return render(
         request=request,
         context=context_dict,
@@ -111,20 +145,16 @@ def profile(request):
     )
 
 
-def home(request):
-    avatar_ctx = get_avatar_url_ctx(request)
-    context_dict = {**avatar_ctx}
-
-    print('context_dict: ', context_dict)
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="main/home.html")
-
-
 def get_avatar_url_ctx(request):
     avatars = Avatar.objects.filter(user=request.user.id)
     if avatars.exists():
         return {"url": avatars[0].image.url}
+    return {}
+
+
+def get_biography(request):
+    avatars = Avatar.objects.filter(user=request.user.id)
+    if avatars.exists():
+        return avatars[0].biography
     return {}
 

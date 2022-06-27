@@ -44,7 +44,8 @@ def sale_form(request):
                 unit_price=data['unit_price'],
                 quantity=data['quantity'],
                 final_price=data['final_price'],
-                date=datetime.now().strftime("%Y-%m-%d")
+                date=datetime.now().strftime("%Y-%m-%d"),
+                seller=request.user
             )
             sale_approval = product_sale(data['product'], data['quantity'])
             if sale_approval == True:

@@ -8,6 +8,7 @@
 <a class="btn btn-primary" href="{% url 'products:product-add' %}">Add Product</a>
 {% endif %}
 <hr>
+{% if product_list %}
     <table>
             <tr style="border-bottom: 1px solid #fff">
             <th style="padding: 5px; color: #125B50">Name</th>
@@ -35,5 +36,8 @@
     {% endfor %}
     </table>
 
+{% else %}
+<h4><p style="color: #125B50">No products yet</p></h4>
+{% endif %}
 
 {% endblock %}

@@ -9,6 +9,7 @@
 <a class="btn btn-primary" href="{% url 'clients:client-add' %}">Add Client</a>
 {% endif %}
 <hr>
+{% if client_list %}
     <table>
             <tr style="border-bottom: 1px solid #fff">
             <th style="padding: 5px">Name</th>
@@ -36,5 +37,7 @@
 
     {% endfor %}
     </table>
-
+{% else %}
+<h4><p style="color: #125B50">No clients yet</p></h4>
+{% endif %}
 {% endblock %}

@@ -11,4 +11,5 @@ class Sale(models.Model):
     quantity = models.IntegerField(default=0)
     final_price = models.IntegerField(default=0)
     date = models.DateField(default="2000-01-01")
+    seller = models.CharField(max_length=40, default=' ', null=True, blank=True)
 

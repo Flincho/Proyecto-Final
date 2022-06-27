@@ -1,16 +1,16 @@
 {% extends "main/index.html" %}
 {% load static %}
-{% block title %}Avatar{% endblock %}
+{% block title %}Edit Avatar{% endblock %}
 {% block content %}
 
-<h2>Formulario para carga de Imagen de Avatar</h2>
+<h2>Edit Avatar Image</h2>
 <hr>
-<h3>Usuario: {{user.username}}</h3>
+<h3>{{user.username}}</h3>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Cargar Imagen</button>
+    <button type="submit" class="btn btn-primary">Upload Image</button>
 </form>
 
 {% endblock %}

@@ -8,6 +8,7 @@
 <a class="btn btn-primary" href="{% url 'suppliers:supplier-add' %}">Add Supplier</a>
 {% endif %}
 <hr>
+{% if supplier_list %}
     <table>
             <tr style="border-bottom: 1px solid #fff">
             <th style="padding: 5px; color: #125B50">Name</th>
@@ -32,5 +33,9 @@
 
     {% endfor %}
     </table>
+
+{% else %}
+<h4><p style="color: #125B50">No suppliers yet</p></h4>
+{% endif %}
 
 {% endblock %}

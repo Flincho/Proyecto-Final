@@ -11,6 +11,8 @@
 <p style="font-size:1.4em"><b>Unit Price:</b> ${{sale.unit_price}}</p>
 <p style="font-size:1.4em"><b>Final Price:</b> ${{sale.final_price}}</p>
 <p style="font-size:1.4em"><b>Date:</b> {{sale.date}}</p>
+<p style="font-size:1.4em"><b>Seller:</b> {{sale.seller}}</p>
+
 <p><a class="btn btn-primary" href="{% url 'sales:sale-list' %}">Back to sale list</a></p>
 {% endblock %}
 
