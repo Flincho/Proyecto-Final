@@ -1,11 +1,5 @@
 from django.shortcuts import render
 from django.db.models import Q
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from accounts.views import get_avatar_url_ctx
 
 from sales.models import *
