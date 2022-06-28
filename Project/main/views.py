@@ -10,19 +10,26 @@ from products.models import *
 
 
 def home(request):
-    avatar_ctx = get_avatar_url_ctx(request)
-    context_dict = {**avatar_ctx}
+    try:
+        avatar_ctx = get_avatar_url_ctx(request)
+        context_dict = {**avatar_ctx}
 
-    print('context_dict: ', context_dict)
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="main/home.html")
+        return render(
+            request=request,
+            context=context_dict,
+            template_name="main/home.html")
+    except:
+        return render(
+            request=request,
+            template_name="main/home.html")
 
 
 def search(request):
-    avatar_ctx = get_avatar_url_ctx(request)
-    context_dict = {**avatar_ctx}
+    try:
+        avatar_ctx = get_avatar_url_ctx(request)
+        context_dict = {**avatar_ctx}
+    except:
+        context_dict = {}
 
     if request.GET['client_search']:
         search_param = request.GET['client_search']
@@ -62,13 +69,16 @@ def search(request):
 
 
 def about(request):
-    avatar_ctx = get_avatar_url_ctx(request)
-    context_dict = {**avatar_ctx}
+    try:
+        avatar_ctx = get_avatar_url_ctx(request)
+        context_dict = {**avatar_ctx}
 
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="main/about.html",
-    )
+        return render(
+            request=request,
+            context=context_dict,
+            template_name="main/about.html")
 
-
+    except:
+        return render(
+            request=request,
+            template_name="main/about.html")

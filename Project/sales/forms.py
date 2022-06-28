@@ -2,7 +2,6 @@ from django import forms
 import calculation
 from products.models import *
 from clients.models import *
-from sales.models import Sale
 
 
 class SaleForm(forms.Form):

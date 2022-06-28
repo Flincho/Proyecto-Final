@@ -15,7 +15,6 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Usuario creado exitosamente!")
             return redirect("accounts:user-login")
     form = UserRegisterForm()
     return render(
@@ -85,8 +84,10 @@ def avatar_load(request):
                 avatar = Avatar(user=request.user, image=image)
             else:
                 avatar = avatars[0]
-                if len(avatar.image) > 0:
+                try:
                     os.remove(avatar.image.path)
+                except:
+                    pass
                 avatar.image = image
             avatar.save()
             messages.success(request, "Avatar uploaded successfully")
@@ -98,7 +99,6 @@ def avatar_load(request):
         context={"form": form},
         template_name="accounts/avatar_form.html",
     )
-
 
 @login_required
 def bio_update(request):
@@ -131,8 +131,12 @@ def bio_update(request):
 
 @login_required
 def profile(request):
-    avatar_ctx = get_avatar_url_ctx(request)
-    context_dict = {**avatar_ctx}
+    try:
+        avatar_ctx = get_avatar_url_ctx(request)
+        context_dict = {**avatar_ctx}
+    except:
+        context_dict = {}
+
     biography = get_biography(request)
     context_dict.update({
         'bio': biography

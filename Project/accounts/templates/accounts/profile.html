@@ -14,6 +14,7 @@
     {% endfor %}
 {% endif %}
 
+{% if url %}
     <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
             <img width=90% src="{{ url }}" style="border-radius:4em">
@@ -29,7 +30,15 @@
                 {% endif %}
         </div>
     </div>
+{% else %}
+<p style="color: #125B50; font-size:1.6em"><b>{{user.first_name}} {{user.last_name}}</b></p>
+                <p style="font-size:1.4em"><b>{{user.email}}</b> </p>
 
+                {% if bio  %}
+                <div style="background: #fff; color: #000; border-radius: 5px"><p style="padding: 0.7em">{{bio}}</p></div>
+                {% endif %}
+
+{% endif %}
 <br>
      <div class="row">
          <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
@@ -38,6 +47,7 @@
              <a class="btn btn-primary" href="{% url 'accounts:bio-update' %}">Edit Biography</a>
          </div>
      </div>
+
 </div>
 {% endif %}
 {% endblock %}

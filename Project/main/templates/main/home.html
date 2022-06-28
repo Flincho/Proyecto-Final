@@ -50,12 +50,14 @@
            <td><a href="{% url 'clients:client-detail' client.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>
+            {% if user.is_authenticated %}
             <td><a href="{% url 'clients:client-update' client.id %}" style="padding: 5px">
                 <i class="bi-pencil-square" style="color: #125B50"> </i>
             </a></td>
             <td><a href="{% url 'clients:client-delete' client.id %}" style="padding: 5px">
                 <i class="bi-trash-fill" style="color: #125B50"> </i>
             </a></td>
+            {% endif %}
         </tr>
 
         {% endfor %}
@@ -77,12 +79,14 @@
            <td><a href="{% url 'products:product-detail' product.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>
+            {% if user.is_authenticated %}
             <td><a href="{% url 'products:product-update' product.id %}" style="padding: 5px">
                 <i class="bi-pencil-square" style="color: #125B50"> </i>
             </a></td>
             <td><a href="{% url 'products:product-delete' product.id %}" style="padding: 5px">
                 <i class="bi-trash-fill" style="color: #125B50"> </i>
             </a></td>
+            {% endif %}
         </tr>
 
     {% endfor %}
@@ -101,17 +105,20 @@
             <td><a href="{% url 'suppliers:supplier-detail' supplier.id %}" style="padding: 5px">
                 <i class="bi-plus-circle-fill" style="color: #125B50"> </i>
             </a></td>
+            {% if user.is_authenticated %}
             <td><a href="{% url 'suppliers:supplier-update' supplier.id %}" style="padding: 5px">
                 <i class="bi-pencil-square" style="color: #125B50"> </i>
             </a></td>
             <td><a href="{% url 'suppliers:supplier-delete' supplier.id %}" style="padding: 5px">
                 <i class="bi-trash-fill" style="color: #125B50"> </i>
             </a></td>
+            {% endif %}
         </tr>
 
     {% endfor %}
     </table>
 {% endif %}
+</div>
 </div>
 </div>
 {% endblock %}
